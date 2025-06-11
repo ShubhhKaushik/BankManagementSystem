@@ -1,5 +1,3 @@
-package BankManagementSystem;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -15,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 
 public class Login extends JFrame implements ActionListener{
 
@@ -42,7 +41,7 @@ public class Login extends JFrame implements ActionListener{
 
         JLabel cardno = new JLabel("Card No:");
         cardno.setFont(new Font("Raleway",Font.BOLD,38));
-        cardno.setBounds(120,150,150,40);
+        cardno.setBounds(120,150,200,40);
         add(cardno);
 
         cardTextField = new JTextField();
@@ -52,7 +51,7 @@ public class Login extends JFrame implements ActionListener{
 
         JLabel pin = new JLabel("PIN:");
         pin.setFont(new Font("Raleway",Font.BOLD,38));
-        pin.setBounds(120,220,250,40);
+        pin.setBounds(120,220,200,40);
         add(pin);
 
         pinTextField = new JPasswordField();
@@ -95,14 +94,12 @@ public class Login extends JFrame implements ActionListener{
         }else if(ae.getSource()==login){
 
         }else if(ae.getSource()==signup){
-
+            setVisible(false);
+            new SignUpOne().setVisible(true);
         }
     }
 
-
-
-
     public static void main(String[] args) {
-       new Login();
+        new Login().setVisible(true);
     }
 }
