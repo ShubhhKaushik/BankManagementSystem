@@ -20,7 +20,8 @@ public class SignUpOne extends JFrame implements  ActionListener {
         setLayout(null);
 
         Random ran = new Random();
-        long random = Math.abs(ran.nextLong() % 900L) + 100L;
+        random = Math.abs(ran.nextLong() % 900000L) + 100000L;
+
 
         formno = new JLabel("Application Form No. : " + random);
         formno.setFont(new Font("Raleway", Font.BOLD, 38));
@@ -203,11 +204,12 @@ public class SignUpOne extends JFrame implements  ActionListener {
                 JOptionPane.showMessageDialog(null, "Please enter your name");
             }else{
                 conn c = new conn();
-                String query = "insert into signup values('"+formno+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+email+"','"+marital+"','"+address+"','"+city+"','"+state+"','"+pin+"')";
+                String query = "insert into signup values('"+formnno+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+email+"','"+marital+"','"+address+"','"+city+"','"+state+"','"+pin+"')";
+
                 c.s.executeUpdate(query);
 
                 setVisible(false);
-                new SignUp2().setVisible(true);
+                new SignUp2("").setVisible(true);
             }
         }catch(Exception ex){
             System.out.println(ex);
