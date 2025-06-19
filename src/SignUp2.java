@@ -82,7 +82,7 @@ public class SignUp2 extends JFrame implements  ActionListener {
 
         String[] occupationVal = {"Salaried","Self-Employed","Business","Student","Retired","Other"};
         occupation = new JComboBox(occupationVal);
-        occupation.setBounds(300, 390, 400, 30);
+        occupation.setBounds(300, 370, 400, 30);
         occupation.setBackground(Color.WHITE);
         add(occupation);
 
@@ -188,8 +188,10 @@ public class SignUp2 extends JFrame implements  ActionListener {
 
         try{
                 conn c = new conn();
-                String query = "insert into signup values('')";
+                String query = "insert into signup2 values('"+formno+","+sreligion+", "+sincome+", "+scategory+", "+seducate+", "+soccupation+", "+seniorcitizen+", "+exist+", "+pan+", "+aadhar+"')";
                 c.s.executeUpdate(query);
+
+
         }catch(Exception ex){
             System.out.println(ex);
         }
