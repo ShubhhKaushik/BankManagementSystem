@@ -1,12 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
-import com.toedter.calendar.JDateChooser;
 import java.awt.event.*;
-import java.sql.*;
 
 public class SignUp2 extends JFrame implements  ActionListener {
-
+    long random;
     JTextField panTextField,aadharTextField;
     JButton next;
     JRadioButton yes,no,syes,sno;
@@ -58,7 +55,7 @@ public class SignUp2 extends JFrame implements  ActionListener {
         income.setBackground(Color.WHITE);
         add(income);
 
-        JLabel l5 = new JLabel("Educational:");
+        JLabel l5 = new JLabel("Educational");
         l5.setFont(new Font("Raleway", Font.BOLD, 20));
         l5.setBounds(100, 270, 200, 30);
         add(l5);
@@ -164,6 +161,9 @@ public class SignUp2 extends JFrame implements  ActionListener {
         setVisible(true);
     }
 
+    public SignUp2(JLabel formno) {
+    }
+
     public void actionPerformed(ActionEvent e) {
         String sreligion = (String)religion.getSelectedItem();
         String scategory = (String)category.getSelectedItem();
@@ -188,7 +188,8 @@ public class SignUp2 extends JFrame implements  ActionListener {
 
         try{
                 conn c = new conn();
-                String query = "insert into signup2 values('"+formno+","+sreligion+", "+sincome+", "+scategory+", "+seducate+", "+soccupation+", "+seniorcitizen+", "+exist+", "+pan+", "+aadhar+"')";
+
+            String query = "insert into signUp2 values(',"+sreligion+", "+sincome+", "+scategory+", "+seducate+", "+soccupation+", "+seniorcitizen+", "+exist+", "+pan+", "+aadhar+"')";
                 c.s.executeUpdate(query);
 
 
