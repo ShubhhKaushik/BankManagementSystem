@@ -153,6 +153,9 @@ public class SignUp3 extends JFrame implements ActionListener {
 
     }
     public void  actionPerformed(ActionEvent e) {
+        if(e.getSource() == cancel){
+            System.exit(0);
+        }
         if(e.getSource()==submit){
             String type = null;
             if(r1.isSelected()) {
@@ -203,7 +206,7 @@ public class SignUp3 extends JFrame implements ActionListener {
             }
 
         }else if(e.getSource()==cancel){
-
+            System.exit(0);
         }
     }
 
