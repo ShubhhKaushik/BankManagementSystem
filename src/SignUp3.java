@@ -164,9 +164,9 @@ public class SignUp3 extends JFrame implements ActionListener {
             }else type = "Recurring Deposit Account";
 
             Random random = new Random();
-            String cardNumber = "" + Math.abs((random.nextLong()%90000000L))+ 5040936000000000L;
+            String cardNumber = "" + Math.abs((random.nextLong()%90000000L)+ 5040936000000000L);
 
-            String pinNumber = "" + Math.abs((random.nextLong()%9000L))+ 1000L;
+            String pinNumber = "" + Math.abs((random.nextLong()%9000L)+ 1000L);
 
             String facility = "";
             if(c1.isSelected()) {
@@ -188,11 +188,15 @@ public class SignUp3 extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Please Select a Type of Account");
                 }else {
                     conn conn = new conn();
-                    String query1 = "insert into signUp3 values("+this.formno+","+type+","+cardNumber+","+pinNumber+","+facility+")";
+                    String query1 = "INSERT INTO signUp3 VALUES('"+this.formno+"', '"+type+"', '"+cardNumber+"', '"+pinNumber+"', '"+facility+"')";
+                    String query2 = "INSERT INTO login VALUES('"+this.formno+"', '"+cardNumber+"', '"+pinNumber+"')";
                     conn.s.executeUpdate(query1);
+                    conn.s.executeUpdate(query2);
+
+                    JOptionPane.showMessageDialog(null, "Card Number : " + cardNumber + "\n Pin : " + pinNumber);
 
                     setVisible(false);
-                    new SignUp3(formno).setVisible(true);
+                    dispose();
                 }
             }catch(Exception ex) {
                 System.out.println(ex);
