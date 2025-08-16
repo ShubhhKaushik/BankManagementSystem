@@ -100,12 +100,12 @@ public class Login extends JFrame implements ActionListener{
                 ResultSet rs = conn.s.executeQuery(query);
                 if(rs.next()){
                     setVisible(false);
-                    new Transaction().setVisible(true);
+                    new Transaction("").setVisible(true);
                 }else{
                     JOptionPane.showMessageDialog(null, "Invalid Card or Pin Number");
                 }
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null,e);
+                System.out.println(e.getMessage());
             }
         }else if(ae.getSource()==signup){
             setVisible(false);
