@@ -5,12 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.*;
+import java.util.Date;
 
 public class FastCash extends JFrame implements ActionListener {
 
     JButton deposit,withdrawal,fastCash,mini,pinChange,enquiry,exit;
     String pinNumber;
     FastCash(String pinNumber) {
+        this.pinNumber = pinNumber;
 
         setLayout(null);
 
@@ -24,7 +26,7 @@ public class FastCash extends JFrame implements ActionListener {
         JLabel text = new JLabel("Please Select The Amount To Withdraw");
         text.setBounds(185,210,700,35);
         text.setForeground(Color.WHITE);
-        text.setFont(new Font("Raleway",Font.BOLD,16));
+        text.setFont(new Font("Raleway",Font.BOLD,18));
         image.add(text);
 
         deposit = new JButton("Rs 100");
@@ -80,8 +82,28 @@ public class FastCash extends JFrame implements ActionListener {
             String amount  = ((JButton)e.getSource()).getText().substring(3);
             conn conn = new  conn();
             try{
-                ResultSet rs = conn.s.executeQuery("select * from where pin = '"+pinNumber+"'");
+                ResultSet rs = conn.s.executeQuery("select * from bank where pin = '"+pinNumber+"'");
                 int balance = 0;
+                while(rs.next()){
+                    if(rs.getString("type").equalsIgnoreCase("deposit")){
+                        balance +=  Integer.parseInt(rs.getString("amount"));
+                    }else{
+                        balance -= Integer.parseInt(rs.getString("amount"));
+                    }
+
+                }
+                if(balance<Integer.parseInt(amount)){
+                    JOptionPane.showMessageDialog(null,"Insufficient Balance");
+                    return;
+                }
+
+                Date date = new Date();
+                String query = "Insert into bank values('"+pinNumber+"','"+date+"','withdrawal','"+amount+"')";
+                conn.s.executeUpdate(query);
+                JOptionPane.showMessageDialog(null,"Rs "+amount+" Withdrawn Successfully");
+
+                setVisible(false);
+                new Transaction(pinNumber).setVisible(true);
 
             }catch(Exception ex){
                 System.out.println(ex);

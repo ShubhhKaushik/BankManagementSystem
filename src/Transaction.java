@@ -8,6 +8,7 @@ public class Transaction extends JFrame implements ActionListener {
     JButton deposit,withdrawal,fastCash,mini,pinChange,enquiry,exit;
     String pinNumber;
     Transaction(String pinNumber) {
+        this.pinNumber = pinNumber;
 
         setLayout(null);
 
@@ -78,6 +79,9 @@ public class Transaction extends JFrame implements ActionListener {
         }else if(e.getSource() == withdrawal){
             setVisible(false);
             new Withdraw(pinNumber).setVisible(true);
+        }else if(e.getSource()==fastCash){
+            setVisible(false);
+            new FastCash(pinNumber).setVisible(true);
         }
 
     }
