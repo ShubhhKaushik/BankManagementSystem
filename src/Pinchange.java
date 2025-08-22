@@ -7,7 +7,9 @@ public class Pinchange extends JFrame implements ActionListener {
     JLabel text,pinText,reText;
     JTextField pin,rePin;
     JButton change,back;
-    Pinchange(String pinchange) {
+    String pinNumber;
+    Pinchange(String pinNumber) {
+        this.pinNumber = pinNumber;
 
         setLayout(null);
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemClassLoader().getResource("atm.jpg"));
@@ -63,8 +65,49 @@ public class Pinchange extends JFrame implements ActionListener {
 
     }
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == change) {
+            try {
+                String npin = pin.getText();
+                String repin = rePin.getText();
+                if (!npin.equals(repin)) {
+                    JOptionPane.showMessageDialog(null, "PIN DOES NOT MATCH");
+                    return;
+                }
+                if(!npin.equals(" ")) {
+                    JOptionPane.showMessageDialog(null, "PIN CANNOT BE EMPTY");
+                    return;
+                }
+                if(!repin.equals(" ")) {
+                    JOptionPane.showMessageDialog(null, "RE-PIN CANNOT BE EMPTY");
+                        return;
+                }
 
+                conn conn = new conn();
+                String query1 = "Update bank set pin = '"+repin+"' where pin='"+pinNumber+"'";
+                String query2 = "Update login set pin = '"+repin+"' where pin='"+pinNumber+"'";
+                String query3 = "Update signUp3 set pin = '"+repin+"' where pin='"+pinNumber+"'";
 
+                conn.s.executeUpdate(query1);
+                conn.s.executeUpdate(query2);
+                conn.s.executeUpdate(query3);
+
+                JOptionPane.showMessageDialog(null, "PIN CHANGED SUCCESSFULLY");
+
+                setVisible(false);
+                dispose();
+                new Transaction(repin).setVisible(true);
+
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+
+        }else{
+            if(e.getSource() == back){
+                setVisible(false);
+                new Transaction(pinNumber).setVisible(true);
+
+            }
+        }
     }
 
     public static void main(String[] args) {

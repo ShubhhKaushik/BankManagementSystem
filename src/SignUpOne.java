@@ -8,7 +8,8 @@ import java.sql.*;
 public class SignUpOne extends JFrame implements  ActionListener {
 
     long random;
-    JLabel formno;
+    String formno;
+    JLabel formnoLabel;
     JTextField nameTextField, fnameTextField, dobTextField, emailTextField,
             passwordTextField, addressTextField, cityTextField, stateTextField, pinTextField;
     JButton next;
@@ -23,10 +24,10 @@ public class SignUpOne extends JFrame implements  ActionListener {
         random = Math.abs(ran.nextLong() % 900000L) + 100000L;
 
 
-        formno = new JLabel("Application Form No. : " + random);
-        formno.setFont(new Font("Raleway", Font.BOLD, 38));
-        formno.setBounds(140, 20, 600, 40);
-        add(formno);
+        formnoLabel = new JLabel("Application Form No. : " + random);
+        formnoLabel.setFont(new Font("Raleway", Font.BOLD, 38));
+        formnoLabel.setBounds(140, 20, 600, 40);
+        add(formnoLabel);
 
 
         JLabel personaldetails = new JLabel("Page 1: Personal Details:");
