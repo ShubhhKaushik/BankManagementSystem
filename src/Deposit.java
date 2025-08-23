@@ -73,7 +73,7 @@ public class Deposit extends JFrame implements ActionListener {
 
         }else if(e.getSource() == back){
             setVisible(false);
-            new Transaction("").setVisible(true);
+            new Transaction(pinNumber).setVisible(true);
         }
     }
 

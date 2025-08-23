@@ -66,6 +66,7 @@ public class Withdraw extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null,"Rs "+ number + " Withdrawn Successfully");
                     setVisible(false);
                     new Transaction(pinNumber).setVisible(true);
+
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }

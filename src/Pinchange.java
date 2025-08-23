@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class Pinchange extends JFrame implements ActionListener {
     JLabel text,pinText,reText;
-    JTextField pin,rePin;
+    JPasswordField pin,rePin;
     JButton change,back;
     String pinNumber;
     Pinchange(String pinNumber) {
@@ -31,7 +31,7 @@ public class Pinchange extends JFrame implements ActionListener {
         pinText.setFont(new Font("Raleway",Font.BOLD,16));
         image.add(pinText);
 
-        pin = new JTextField();
+        pin = new JPasswordField();
         pin.setFont(new Font("Raleway",Font.BOLD,25));
         pin.setBounds(310,260,200,25);
         image.add(pin);
@@ -42,7 +42,7 @@ public class Pinchange extends JFrame implements ActionListener {
         reText.setFont(new Font("Raleway",Font.BOLD,16));
         image.add(reText);
 
-        rePin = new JTextField();
+        rePin = new JPasswordField();
         rePin.setFont(new Font("Raleway",Font.BOLD,25));
         rePin.setBounds(310,300,200,25);
         image.add(rePin);
@@ -73,19 +73,19 @@ public class Pinchange extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "PIN DOES NOT MATCH");
                     return;
                 }
-                if(!npin.equals(" ")) {
+                if(npin.equals("")) {
                     JOptionPane.showMessageDialog(null, "PIN CANNOT BE EMPTY");
                     return;
                 }
-                if(!repin.equals(" ")) {
+                if(repin.equals("")) {
                     JOptionPane.showMessageDialog(null, "RE-PIN CANNOT BE EMPTY");
                         return;
                 }
 
                 conn conn = new conn();
                 String query1 = "Update bank set pin = '"+repin+"' where pin='"+pinNumber+"'";
-                String query2 = "Update login set pin = '"+repin+"' where pin='"+pinNumber+"'";
-                String query3 = "Update signUp3 set pin = '"+repin+"' where pin='"+pinNumber+"'";
+                String query2 = "Update login set pinNumber = '"+repin+"' where pinNumber='"+pinNumber+"'";
+                String query3 = "Update signUp3 set pinnumber = '"+repin+"' where pinnumber='"+pinNumber+"'";
 
                 conn.s.executeUpdate(query1);
                 conn.s.executeUpdate(query2);
@@ -93,9 +93,10 @@ public class Pinchange extends JFrame implements ActionListener {
 
                 JOptionPane.showMessageDialog(null, "PIN CHANGED SUCCESSFULLY");
 
+                pinNumber = repin;
                 setVisible(false);
                 dispose();
-                new Transaction(repin).setVisible(true);
+                new Transaction(pinNumber).setVisible(true);
 
             } catch (Exception ex) {
                 System.out.println(ex);

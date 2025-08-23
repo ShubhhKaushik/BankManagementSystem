@@ -13,9 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+//import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
 
 
 public class Login extends JFrame implements ActionListener{
+    public static void main(String[] args) {
+//        FlatArcIJTheme FlatLightLaf;
+        new Login().setVisible(true);
+    }
 
     JButton login,signup,clear;
     JTextField cardTextField;
@@ -100,7 +105,7 @@ public class Login extends JFrame implements ActionListener{
                 ResultSet rs = conn.s.executeQuery(query);
                 if(rs.next()){
                     setVisible(false);
-                    new Transaction("").setVisible(true);
+                    new Transaction(pin).setVisible(true);
                 }else{
                     JOptionPane.showMessageDialog(null, "Invalid Card or Pin Number");
                 }
@@ -113,7 +118,4 @@ public class Login extends JFrame implements ActionListener{
         }
     }
 
-    public static void main(String[] args) {
-        new Login().setVisible(true);
-    }
 }
