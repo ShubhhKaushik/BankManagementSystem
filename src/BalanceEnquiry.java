@@ -39,7 +39,11 @@ public class BalanceEnquiry extends JFrame implements ActionListener {
             System.out.println(ex);
         }
 
-        
+        JLabel text = new JLabel("Your Account Balance Is Rs: "+balance);
+        text.setFont(new Font("Raleway",Font.BOLD,16));
+        text.setForeground(Color.white);
+        text.setBounds(190,280,400,30);
+        image.add(text);
 
 
 
