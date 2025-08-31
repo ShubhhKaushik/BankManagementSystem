@@ -51,7 +51,7 @@ public class Login extends JFrame implements ActionListener{
 
         cardTextField = new JTextField();
         cardTextField.setFont(new Font("Arial",Font.BOLD,14));
-        cardTextField.setBounds(300,150,230,30);
+        cardTextField.setBounds(300,160,230,30);
         add(cardTextField);
 
         JLabel pin = new JLabel("PIN:");
@@ -60,28 +60,28 @@ public class Login extends JFrame implements ActionListener{
         add(pin);
 
         pinTextField = new JPasswordField();
-        pinTextField.setBounds(300,220,230,30);
+        pinTextField.setBounds(300,230,230,30);
         pinTextField.setFont(new Font("Arial",Font.BOLD,14));
         add(pinTextField);
 
         login = new JButton("SIGN IN");
         login.setBounds(300,300,100,30);
-        login.setForeground(Color.BLACK);
-        login.setBackground(Color.WHITE);
+        login.setForeground(Color.WHITE);
+        login.setBackground(Color.BLACK);
         login.addActionListener(this);
         add(login);
 
         clear = new JButton("CLEAR");
         clear.setBounds(430,300,100,30);
-        clear.setForeground(Color.BLACK);
-        clear.setBackground(Color.WHITE);
+        clear.setForeground(Color.WHITE);
+        clear.setBackground(Color.BLACK);
         clear.addActionListener(this);
         add(clear);
 
         signup = new JButton("SIGN UP");
         signup.setBounds(300,350,230,30);
-        signup.setForeground(Color.BLACK);
-        signup.setBackground(Color.WHITE);
+        signup.setForeground(Color.WHITE);
+        signup.setBackground(Color.BLACK);
         signup.addActionListener(this);
         add(signup);
 
